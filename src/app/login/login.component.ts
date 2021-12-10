@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from '../service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { Router, Route } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 
 @Component({
@@ -31,26 +32,38 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private serviceAPI: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) { 
 
     //Initialize form
     this.loginForm = this.formBuilder.group({
-      emailInput: ['', [Validators.required, Validators.maxLength(256), Validators.pattern('^[a-z0-9._+-]+@[a-z0-9.-]+\\.[a-z]{1,}$')]],
-      passwordInput: ['', [Validators.required, Validators.maxLength(18), Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&_]).{8,}')]]
+      emailInput: ['', 
+      [
+        Validators.required, 
+        Validators.maxLength(256), 
+        Validators.pattern('^[a-z0-9._+-]+@[a-z0-9.-]+\\.[a-z]{1,}$')
+      ]
+    ],
+      passwordInput: ['', 
+      [
+        Validators.required, 
+        Validators.maxLength(18), 
+        Validators.minLength(8), 
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&_]).{8,}')]]
     });
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     console.log('Hello world');
-
-    
 
     try {
       if(this.cookieService.get('token') !== '' && this.cookieService.get('user_id') !== '') {
         //decode JWT token
         const tokenPayload = jwtDecode(this.cookieService.get('token'));
+
+        this.router.navigate(['/home']);
         
       } else {
         //delete if have any
@@ -58,6 +71,20 @@ export class LoginComponent implements OnInit {
         this.cookieService.delete('token', '/');
       }
     } catch (error) {
+
+      
+      this.cookieService.delete('user_id', '/');
+      this.cookieService.delete('token', '/');
+
+      await Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Something is not right',
+        text: 'Please try again later',
+        showConfirmButton: false,
+        timer: 3000,
+        allowOutsideClick: false
+      });
 
     }
 
@@ -103,6 +130,9 @@ export class LoginComponent implements OnInit {
             //set cookies
             this.cookieService.set('user_id', this.loginData.data.email, 0, '/', '', this.secureFlag, 'Strict');
             this.cookieService.set('token', this.loginData.data.jwtToken.token, 0, '/', '', this.secureFlag, 'Strict');
+
+            this.router.navigate(['/home']);
+
 
           } else if (this.loginData.message == 'Email does not exist') {
 
