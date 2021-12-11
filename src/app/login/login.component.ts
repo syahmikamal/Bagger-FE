@@ -101,6 +101,7 @@ export class LoginComponent implements OnInit {
         this.buttonName = 'Signing In';
         this.isLoading = true;
 
+        //Retrieve form input
         const getPassword = this.loginForm.get('passwordInput').value;
         const getEmail = this.loginForm.get('emailInput').value;
 
@@ -188,6 +189,16 @@ export class LoginComponent implements OnInit {
 
           if(error.status === 400) {
 
+            await Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Login failed',
+              text: error.message,
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
+
           }
         })
 
@@ -209,7 +220,7 @@ export class LoginComponent implements OnInit {
 
     } catch(error) {
       this.isLoading = false;
-      console.log('Login error: ', error);
+      console.error('Login error: ', error);
     }
   }
 

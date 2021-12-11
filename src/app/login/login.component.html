@@ -39,26 +39,26 @@
               </div>
               <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                 <div class="form-group mb-3"
-                  [ngClass]="{'has-error': loginForm.get('emailInput').errors && (loginForm.get('emailInput').touched || loginForm.get('emailInput').dirty)}">
+                  [ngClass]="{'has-error': loginForm.get('emailInput').errors && (loginForm.get('emailInput').touched || loginForm.get('emailInput').dirty), 'focused':focus===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     <!-- <input class="form-control" placeholder="Email" type="email" (focus)="focus=true" (blur)="focus=false"> -->
                     <input class="form-control" placeholder="Email" type="email" id="emailInput" name="emailInput"
-                      formControlName="emailInput">
+                      formControlName="emailInput" (focus)="focus=true" (blur)="focus=false">
                   </div>
 
                   <div
                     *ngIf="loginForm.get('emailInput').errors && (loginForm.get('emailInput').touched || loginForm.get('emailInput').dirty)">
-                    <div *ngIf="loginForm.get('emailInput').errors.required" class="help-block mt-1 text-danger"><i
-                        class="ni ni-fat-remove"></i>
+                    <div *ngIf="loginForm.get('emailInput').errors.required"
+                      class="help-block mt-1 text-danger text-center"><i class="bi bi-exclamation-circle"></i>
                       <small>
                         Email is required
                       </small>
                     </div>
-                    <div *ngIf="loginForm.get('emailInput').errors.pattern" class="help-block mt-1 text-danger"><i
-                        class="ni ni-fat-remove"></i>
+                    <div *ngIf="loginForm.get('emailInput').errors.pattern"
+                      class="help-block mt-1 text-danger text-center"><i class="bi bi-exclamation-circle"></i>
                       <small>
                         Invalid email format
                       </small>
@@ -67,25 +67,26 @@
 
                 </div>
                 <div class="form-group"
-                  [ngClass]="{'has-error': loginForm.get('passwordInput').errors && (loginForm.get('passwordInput').touched || loginForm.get('passwordInput').dirty)}">
+                  [ngClass]="{'has-error': loginForm.get('passwordInput').errors && (loginForm.get('passwordInput').touched || loginForm.get('passwordInput').dirty), 'focused':focus1===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <!-- <input class="form-control" placeholder="Password" type="password" (focus)="focus1=true" (blur)="focus1=false"> -->
                     <input class="form-control" placeholder="Password" type="password" id="passwordInput"
-                      name="passwordInput" formControlName="passwordInput">
+                      name="passwordInput" formControlName="passwordInput" (focus)="focus1=true" (blur)="focus1=false">
                   </div>
+
                   <div
                     *ngIf="loginForm.get('passwordInput').errors && (loginForm.get('passwordInput').touched || loginForm.get('passwordInput').dirty)">
-                    <div *ngIf="loginForm.get('passwordInput').errors.required" class="help-block mt-1 text-danger"><i
-                        class="ni ni-fat-remove"></i>
+                    <div *ngIf="loginForm.get('passwordInput').errors.required"
+                      class="help-block mt-1 text-danger text-center"><i class="bi bi-exclamation-circle"></i>
                       <small>
                         Password is required
                       </small>
                     </div>
-                    <div *ngIf="loginForm.get('passwordInput').errors.pattern" class="help-block mt-1 text-danger"><i
-                        class="ni ni-fat-remove"></i>
+                    <div *ngIf="loginForm.get('passwordInput').errors.pattern"
+                      class="help-block mt-1 text-danger text-center"><i class="bi bi-exclamation-circle"></i>
                       <small>
                         Invalid password format
                       </small>
