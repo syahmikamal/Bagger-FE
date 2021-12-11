@@ -14,7 +14,12 @@ export class AuthService {
     private http: HttpClient,
   ) { }
 
+  //Authentication
   signIn(data) {
     return this.http.post(`${this.uri}/auth/sign-in`, data);
+  }
+
+  signUp(data) {
+    return this.http.post(`${this.uri}/auth/sign-up`, data);
   }
 }
