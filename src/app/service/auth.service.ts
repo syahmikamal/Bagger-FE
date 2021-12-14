@@ -22,4 +22,9 @@ export class AuthService {
   signUp(data) {
     return this.http.post(`${this.uri}/auth/sign-up`, data);
   }
+
+  //verify token
+  verifyToken(data) {
+    return this.http.get(`${this.uri}/auth/verify-token/?verifyToken=${data}`);
+  }
 }
