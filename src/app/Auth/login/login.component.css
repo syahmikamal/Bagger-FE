@@ -1,3 +1,7 @@
 input {
     caret-color:orange
 }
+
+a:hover {
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { Router, Route } from '@angular/router';
 import jwtDecode from 'jwt-decode';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -23,17 +24,23 @@ export class LoginComponent implements OnInit {
 
   //Form group
   loginForm: FormGroup;
+  resetForm: FormGroup; //reset password form
 
   buttonName = 'Sign In';
+  buttonMail = 'Update';
+
+  closeResult: string;
 
   //res
   loginData: any = [];
+  resetEmailData: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private serviceAPI: AuthService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) { 
 
     //Initialize form
@@ -52,6 +59,16 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8), 
         Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&_]).{8,}')]]
     });
+
+    this.resetForm = this.formBuilder.group({
+      emailInput: ['',
+      [
+        Validators.required,
+        Validators.maxLength(256),
+        Validators.pattern('^[a-z0-9._+-]+@[a-z0-9.-]+\\.[a-z]{1,}$')
+      ]
+    ],
+    })
 
   }
 
@@ -87,8 +104,55 @@ export class LoginComponent implements OnInit {
       });
 
     }
+  }
 
+  open(content, type, modalDimension) {
+    if (modalDimension === 'sm' && type === 'modal_mini') {
+      this.modalService.open(content, {
+        windowClass: 'modal-mini',
+        size: 'sm',
+        centered: true,
+        backdrop: 'static',
+        keyboard: false
+      }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
 
+        this.resetForm.reset()
+
+        this.closeResult = 'Dismissed $this.getDismiss(reason)';
+      });
+    } else if (modalDimension === '' && type === 'Notification') {
+      this.modalService.open(content, {
+        windowClass: 'modal-danger',
+        centered: true,
+        backdrop: 'static',
+        keyboard: false
+      }).result.then((result) => {
+        this.closeResult = 'Dismissed $this.getDismissReason(reason)'
+      });
+    } else {
+      this.modalService.open(content, {
+        centered: true,
+        backdrop: 'static',
+        keyboard: false
+      }).result.then((result) => {
+        this.closeResult = 'Closed with: $result';
+      }, (reason) => {
+
+        this.resetForm.reset();
+      })
+    }
+  }
+
+  private getDismissReason(reason: any): string {
+    if(reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK)  {
+      return 'by clicking on a backdrop';
+    } else {
+      return 'with: $reason';
+    }
   }
 
   async onSubmit() {
@@ -221,6 +285,78 @@ export class LoginComponent implements OnInit {
     } catch(error) {
       this.isLoading = false;
       console.error('Login error: ', error);
+    }
+  }
+
+  mailSubmit() {
+    if (this.resetForm.valid) {
+
+      this.isLoading = true;
+      this.buttonMail = 'Updating'
+
+      const email = this.resetForm.get('emailInput').value;
+
+      console.log('email: ', email)
+
+      // this.serviceAPI.resetEmail({'resetEmail': email})
+      //   .subscribe((res) => {
+
+      //     //retrieve API response
+      //     this.resetEmailData = res;
+
+      //     this.isLoading = false;
+      //     this.buttonMail = 'Update';
+
+      //     if (this.resetEmailData.status === true) {
+
+      //       this.modalService.dismissAll();
+
+      //       Swal.fire({
+      //         icon: 'success',
+      //         position: 'center',
+      //         title: 'Success',
+      //         text: 'Email successfully sent',
+      //         showConfirmButton: false,
+      //         timer: 3000,
+      //         allowOutsideClick: false
+      //       });
+
+      //     } else {
+
+      //       this.modalService.dismissAll();
+
+      //       Swal.fire({
+      //         icon: 'warning',
+      //         position: 'center',
+      //         title: 'Warning',
+      //         text: this.resetEmailData.message,
+      //         showConfirmButton: false,
+      //         timer: 3000,
+      //         allowOutsideClick: false
+      //       });
+
+      //       //refresh page
+      //       this.ngOnInit();
+
+      //     }
+      //   }, async (error: any) => {
+
+      //     if(error.status === 400) {
+
+      //       this.modalService.dismissAll();
+      //       this.isLoading = false;
+
+      //       await Swal.fire({
+      //         position: 'center',
+      //         icon: 'warning',
+      //         title: 'Sent email failed',
+      //         text: error.message,
+      //         showConfirmButton: false,
+      //         timer: 3000,
+      //         allowOutsideClick: false
+      //       });
+      //     }
+      //   })
     }
   }
 
