@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyComponent } from './verify/verify.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
         path: 'verify-token/:id',     
         component: VerifyComponent 
       },
+      {
+        path: 'reset-password/:id',
+        component: ResetPasswordComponent
+      }
   
     ],
   }

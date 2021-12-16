@@ -8,6 +8,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyComponent } from './verify/verify.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 import { AuthService } from '../service/auth.service';
 
@@ -16,7 +17,8 @@ import { AuthService } from '../service/auth.service';
   declarations: [
     LoginComponent,
     SignupComponent,
-    VerifyComponent
+    VerifyComponent,,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
