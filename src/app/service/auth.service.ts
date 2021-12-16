@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   resetEmail(data) {
-    return this.http.post(`${this.uri}/auth/reset-password`, data)
+    return this.http.post(`${this.uri}/auth/reset-email`, data)
   }
 
   //verify token
