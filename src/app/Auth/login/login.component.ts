@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Router, Route } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   secureFlag = environment.cookie_secure_flag;
 
   isLoading = false;
+  isSending = false;
   loading = false;
 
   //Form group
@@ -40,7 +42,8 @@ export class LoginComponent implements OnInit {
     private serviceAPI: AuthService,
     private cookieService: CookieService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService
   ) { 
 
     //Initialize form
@@ -77,12 +80,14 @@ export class LoginComponent implements OnInit {
 
     try {
       if(this.cookieService.get('token') !== '' && this.cookieService.get('user_id') !== '') {
+
         //decode JWT token
         const tokenPayload = jwtDecode(this.cookieService.get('token'));
 
         this.router.navigate(['/home']);
         
       } else {
+
         //delete if have any
         this.cookieService.delete('user_id', '/');
         this.cookieService.delete('token', '/');
@@ -291,72 +296,100 @@ export class LoginComponent implements OnInit {
   mailSubmit() {
     if (this.resetForm.valid) {
 
-      this.isLoading = true;
+      this.isSending = true;
       this.buttonMail = 'Updating'
 
       const email = this.resetForm.get('emailInput').value;
 
       console.log('email: ', email)
 
-      // this.serviceAPI.resetEmail({'resetEmail': email})
-      //   .subscribe((res) => {
+      // this.spinner.show(undefined,
+      //   {
+      //     type: 'ball-scale-multiple',
+      //     size: 'medium',
+      //     bdColor: 'rgba(0, 0, 0, 0.8)',
+      //     color: '#fff',
+      //     fullScreen: true
+      //  });
+  
 
-      //     //retrieve API response
-      //     this.resetEmailData = res;
+      this.serviceAPI.resetEmail({'resetEmail': email})
+        .subscribe(async (res) => {
 
-      //     this.isLoading = false;
-      //     this.buttonMail = 'Update';
+          //retrieve API response
+          this.resetEmailData = res;
 
-      //     if (this.resetEmailData.status === true) {
+          this.isSending = false;
+          this.buttonMail = 'Update';
 
-      //       this.modalService.dismissAll();
+          if (this.resetEmailData.status === true) {
 
-      //       Swal.fire({
-      //         icon: 'success',
-      //         position: 'center',
-      //         title: 'Success',
-      //         text: 'Email successfully sent',
-      //         showConfirmButton: false,
-      //         timer: 3000,
-      //         allowOutsideClick: false
-      //       });
+            this.modalService.dismissAll();
 
-      //     } else {
+            await Swal.fire({
+              icon: 'success',
+              position: 'center',
+              title: 'Success',
+              text: 'Email successfully sent',
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
 
-      //       this.modalService.dismissAll();
+          } else {
 
-      //       Swal.fire({
-      //         icon: 'warning',
-      //         position: 'center',
-      //         title: 'Warning',
-      //         text: this.resetEmailData.message,
-      //         showConfirmButton: false,
-      //         timer: 3000,
-      //         allowOutsideClick: false
-      //       });
+            this.modalService.dismissAll();
 
-      //       //refresh page
-      //       this.ngOnInit();
+            await Swal.fire({
+              icon: 'warning',
+              position: 'center',
+              title: 'Warning',
+              text: this.resetEmailData.message,
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
 
-      //     }
-      //   }, async (error: any) => {
+            //refresh page
+            this.ngOnInit();
 
-      //     if(error.status === 400) {
+          }
+        }, async (error: any) => {
 
-      //       this.modalService.dismissAll();
-      //       this.isLoading = false;
+          if(error.status === 400) {
 
-      //       await Swal.fire({
-      //         position: 'center',
-      //         icon: 'warning',
-      //         title: 'Sent email failed',
-      //         text: error.message,
-      //         showConfirmButton: false,
-      //         timer: 3000,
-      //         allowOutsideClick: false
-      //       });
-      //     }
-      //   })
+            this.modalService.dismissAll();
+            this.isLoading = false;
+
+            console.log('error: ', error.error.message)
+
+            await Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Sent email failed',
+              text: error.error.message,
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
+          } else {
+
+            this.modalService.dismissAll();
+            this.isLoading = false;
+
+            await Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Internal server error',
+              text: error.error.message,
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
+          }
+
+          this.isSending = false;
+        })
     }
   }
 

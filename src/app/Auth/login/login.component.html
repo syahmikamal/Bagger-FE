@@ -1,5 +1,6 @@
 <main>
   <section class="section section-shaped section-lg">
+    <ngx-spinner></ngx-spinner>
     <div class="shape shape-style-1 bg-gradient-default">
       <span></span>
       <span></span>
@@ -177,8 +178,8 @@
                 </button>
 
                 <button type="submit" class="btn btn-primary" style="min-width: 8rem; text-align:center"
-                  [disabled]="resetForm.invalid||isLoading">
-                  <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>
+                  [disabled]="resetForm.invalid||isSending">
+                  <i class="fa" [ngClass]="{'fa-spin fa-spinner': isSending}"></i>
                   Submit
                 </button>
               </div>
