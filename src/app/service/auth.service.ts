@@ -27,8 +27,16 @@ export class AuthService {
     return this.http.post(`${this.uri}/auth/reset-email`, data)
   }
 
+  resetPassword(data) {
+    return this.http.post(`${this.uri}/auth/reset-password`, data)
+  }
+
   //verify token
   verifyToken(data) {
     return this.http.get(`${this.uri}/auth/verify-token/?verifyToken=${data}`);
+  }
+
+  verifyResetToken(data) {
+    return this.http.get(`${this.uri}/auth/verify-reset-token/?resetToken=${data}`);
   }
 }
