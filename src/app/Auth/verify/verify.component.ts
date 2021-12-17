@@ -16,7 +16,7 @@ export class VerifyComponent implements OnInit {
   id: any;
   sub: any;
 
-  verifyData: any; 
+  verifyData: any;
 
 
   constructor(
@@ -33,7 +33,7 @@ export class VerifyComponent implements OnInit {
 
     console.log('params: ', this.id);
 
-    if(this.id !== undefined) {
+    if (this.id !== undefined) {
 
       //send to api 
       this.verifyEmail(this.id);
@@ -43,7 +43,7 @@ export class VerifyComponent implements OnInit {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title:'Sorry',
+        title: 'Sorry',
         text: 'Cannot identify verify token',
         showConfirmButton: false,
         timer: 5000,
@@ -64,7 +64,7 @@ export class VerifyComponent implements OnInit {
           this.verifyData = res;
           console.log('SUccess res: ', this.verifyData);
 
-          if(this.verifyData.status == true){
+          if (this.verifyData.status == true) {
 
             await Swal.fire({
               position: 'center',
@@ -76,7 +76,7 @@ export class VerifyComponent implements OnInit {
               allowOutsideClick: false
             });
 
-          this.router.navigate(['login']);
+            this.router.navigate(['login']);
 
           } else {
 
@@ -95,17 +95,27 @@ export class VerifyComponent implements OnInit {
 
           }
 
-          
+
 
         }, async (error: any) => {
 
           console.log('Error verify toekn: ', error);
 
-          
+          await Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Internal server error',
+            text: error.error.message,
+            showConfirmButton: false,
+            timer: 3000,
+            allowOutsideClick: false
+          });
+
+
         })
 
-    } catch(error) {
-      console.log('verify.compoenent-error ', error);
+    } catch (error) {
+      console.log('verify.component-error ', error);
     }
   }
 
