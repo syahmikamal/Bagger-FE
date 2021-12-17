@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 export function MustMatch(controlName: string, matchingControlName: string) {
@@ -39,6 +39,13 @@ export class ResetPasswordComponent implements OnInit {
   focus;
   focus1;
 
+  //params id
+  id: any;
+  sub: any;
+
+  //res API
+  resetData: any;
+
   //button name
   buttonName = 'Update';
 
@@ -49,6 +56,7 @@ export class ResetPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private serviceAPI: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService
   ) {
 
@@ -77,30 +85,102 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('Hello spinner')
+    this.sub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+    })
 
-    this.spinner.show(undefined,
-      {
-        type: 'ball-scale-multiple',
-        size: 'medium',
-        bdColor: 'rgba(0, 0, 0, 0.8)',
-        color: '#fff',
-        fullScreen: true
+    // console.log('Hello spinner')
+
+    // this.spinner.show(undefined,
+    //   {
+    //     type: 'ball-scale-multiple',
+    //     size: 'medium',
+    //     bdColor: 'rgba(0, 0, 0, 0.8)',
+    //     color: '#fff',
+    //     fullScreen: true
+    //   });
+
+
+    if (this.id !== undefined) {
+
+      // setTimeout(() => {
+      //   /** spinner ends after 5 seconds */
+      //   this.spinner.hide();
+      // }, 3000);
+      //send to api
+      this.verifyResetToken(this.id);
+
+    } else {
+
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Sorry',
+        text: 'Cannot identify reset token',
+        showConfirmButton: false,
+        timer: 3000,
+        allowOutsideClick: false
       });
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 3000);
+    }
 
   }
 
-  async onSubmit(){
+  async verifyResetToken(data) {
     try {
 
-    } catch(error) {
+      this.serviceAPI.verifyResetToken(data)
+        .subscribe(async (res) => {
+
+          this.resetData = res;
+          console.info(this.resetData);
+
+          if (this.resetData.status == true) {
+
+            await Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Success',
+              text: 'Successfully verify reset token',
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
+
+          } else {
+
+            await Swal.fire({
+              position: 'center',
+              icon: 'warning',
+              title: 'Invalid token',
+              text: 'Please make sure its a valid token',
+              showConfirmButton: false,
+              timer: 3000,
+              allowOutsideClick: false
+            });
+
+            this.router.navigate(['login']);
+          }
+        }, async (error: any) => {
+
+          await Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Internal server error',
+            text: error.error.message,
+            showConfirmButton: false,
+            timer: 3000,
+            allowOutsideClick: false
+          });
+        })
+
+
+    } catch (error) {
+      console.error('reset-password error: ', error);
 
     }
   }
+
+  
 
 }
