@@ -52,6 +52,8 @@ export class ResetPasswordComponent implements OnInit {
   //form group
   passwordForm: FormGroup;
 
+  verifyData: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private serviceAPI: AuthService,
@@ -87,7 +89,7 @@ export class ResetPasswordComponent implements OnInit {
 
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-    })
+    });
 
     // console.log('Hello spinner')
 
@@ -103,10 +105,6 @@ export class ResetPasswordComponent implements OnInit {
 
     if (this.id !== undefined) {
 
-      // setTimeout(() => {
-      //   /** spinner ends after 5 seconds */
-      //   this.spinner.hide();
-      // }, 3000);
       //send to api
       this.verifyResetToken(this.id);
 
@@ -126,6 +124,70 @@ export class ResetPasswordComponent implements OnInit {
 
   }
 
+  async resetPassword() {
+    try {
+
+      const password = this.passwordForm.get('newPasswordInput').value;
+      const retypePassword = this.passwordForm.get('retypePasswordInput').value; 
+
+      this.sub = this.route.params.subscribe(params => {
+        this.id = params['id'];
+      });
+
+      this.serviceAPI.resetPassword({
+        'resetToken': this.id,
+        'newPassword': password,
+        'retypePassword': retypePassword
+      }).subscribe(async (res) => {
+
+        this.verifyData = res;
+
+        if(this.verifyData.status == true) {
+
+          await Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Success',
+            text: 'Successfully updated password',
+            showConfirmButton: false,
+            timer: 3000,
+            allowOutsideClick: false
+          });
+
+          this.router.navigate(['login']);
+        } else {
+
+          await Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Warning',
+            text: this.verifyData.message,
+            showConfirmButton: false,
+            timer: 3000,
+            allowOutsideClick: false
+          });
+
+          this.router.navigate(['login']);
+
+        }
+      }, async (error: any) => {
+
+        await Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Internal server error',
+          text: error.error.message,
+          showConfirmButton: false,
+          timer: 3000,
+          allowOutsideClick: false
+        });
+      })
+
+    } catch (error) {
+      console.error('reset-password error: ', error);
+    }
+  }
+
   async verifyResetToken(data) {
     try {
 
@@ -133,7 +195,6 @@ export class ResetPasswordComponent implements OnInit {
         .subscribe(async (res) => {
 
           this.resetData = res;
-          console.info(this.resetData);
 
           if (this.resetData.status == true) {
 
@@ -176,7 +237,7 @@ export class ResetPasswordComponent implements OnInit {
 
 
     } catch (error) {
-      console.error('reset-password error: ', error);
+      console.error('verify-reset-token error: ', error);
 
     }
   }

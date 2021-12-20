@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log('Hello world');
 
     try {
       if(this.cookieService.get('token') !== '' && this.cookieService.get('user_id') !== '') {
@@ -178,7 +177,6 @@ export class LoginComponent implements OnInit {
         this.serviceAPI.signIn({ 'email': getEmail, 'password': getPassword }).subscribe(async(res)=> {
 
           this.loginData = res;
-          console.log('Res api: ', this.loginData);
 
           //Check API response
           if(this.loginData.status === true) {
@@ -301,8 +299,6 @@ export class LoginComponent implements OnInit {
 
       const email = this.resetForm.get('emailInput').value;
 
-      console.log('email: ', email)
-
       // this.spinner.show(undefined,
       //   {
       //     type: 'ball-scale-multiple',
@@ -360,8 +356,6 @@ export class LoginComponent implements OnInit {
 
             this.modalService.dismissAll();
             this.isLoading = false;
-
-            console.log('error: ', error.error.message)
 
             await Swal.fire({
               position: 'center',

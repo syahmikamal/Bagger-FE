@@ -74,7 +74,6 @@ export class SignupComponent implements OnInit {
     }
 
     async ngOnInit() {
-        console.log('Hello syahmi!');
 
         try {
 
@@ -128,7 +127,6 @@ export class SignupComponent implements OnInit {
                 }).subscribe(async(res) => {
 
                     this.registerData = res;
-                    console.log('Register res: ', this.registerData);
 
                     //Check API status response
                     if(this.registerData.status === true) {

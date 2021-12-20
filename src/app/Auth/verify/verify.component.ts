@@ -31,8 +31,6 @@ export class VerifyComponent implements OnInit {
       this.id = params['id'];
     });
 
-    console.log('params: ', this.id);
-
     if (this.id !== undefined) {
 
       //send to api 
@@ -62,7 +60,7 @@ export class VerifyComponent implements OnInit {
         .subscribe(async (res) => {
 
           this.verifyData = res;
-          console.log('SUccess res: ', this.verifyData);
+          console.log('Success res: ', this.verifyData);
 
           if (this.verifyData.status == true) {
 
@@ -98,8 +96,6 @@ export class VerifyComponent implements OnInit {
 
 
         }, async (error: any) => {
-
-          console.log('Error verify toekn: ', error);
 
           await Swal.fire({
             position: 'center',
