@@ -28,6 +28,7 @@ export class AuthService {
   }
 
   resetPassword(data) {
+    console.log('reset-password: ', data)
     return this.http.post(`${this.uri}/auth/reset-password`, data)
   }
 
