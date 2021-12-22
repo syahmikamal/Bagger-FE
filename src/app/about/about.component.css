@@ -1,0 +1,32 @@
+.card{
+    /* padding: 1.5em .5em .5em; */
+    border-radius: 12px;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+
+    /* text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2); */
+}
+
+img {
+    border-radius: 12px;
+    display: block;
+    /* border-top-left-radius: 12px;
+    border-top-right-radius: 12px; */
+    object-fit: cover;
+}
+
+.bg-gradient-black-blue {  
+    background: linear-gradient(87deg, #1a1c23 0, #1a1c23 100%)!important
+}
+
+.bg-black-blue {
+    background: linear-gradient(87deg, #23252f 0, #23252f 100%)!important
+
+}
+
+.match-height {
+    height: 100%;
+    width: 100%;
+}
