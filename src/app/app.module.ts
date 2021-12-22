@@ -25,6 +25,7 @@ import { LoginComponent } from './Auth/login/login.component';
 import { VerifyComponent } from './Auth/verify/verify.component';
 import { ResetPasswordComponent } from './Auth/reset-password/reset-password.component';
 import { CoverComponent } from './cover/cover.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CoverComponent } from './cover/cover.component';
     LoginComponent,
     VerifyComponent,
     ResetPasswordComponent,
-    CoverComponent
+    CoverComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
