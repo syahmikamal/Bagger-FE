@@ -17,6 +17,11 @@ img {
     object-fit: cover;
 }
 
+.fit-image {
+    width: 150px;
+    height: 150px;
+}
+
 .border-bottom {
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
