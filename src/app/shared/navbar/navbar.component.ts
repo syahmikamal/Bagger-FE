@@ -53,4 +53,7 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
+    getPath(){
+        return this.router.url;
+      }
 }
