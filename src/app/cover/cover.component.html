@@ -1,7 +1,7 @@
 <main>
     <div class="position-relative">
       <!-- shape Hero -->
-      <section class="section section-lg section-shaped pb-250">
+      <section class="section section-lg bg-gradient-black-blue pb-0">
         <div class="shape shape-style-1 shape-default">
           <span></span>
           <span></span>
@@ -20,14 +20,14 @@
                 <h1 class="display-3  text-white">Hello! I'm Syahmi Kamal
                   <span>Software Developer</span>
                 </h1>
-                <p class="lead  text-white">I am a UM Telecommunication Engineering graduate and later switched to the awesome world of coding - web developer.
+                <p align="justify" class="lead  text-white">I am a UM Telecommunication Engineering graduate and later switched to the awesome world of coding - web developer.
                     <br> Also experience in blockchain technology where my interest and experience in developing smart contract.
                 </p>
                 <div class="btn-wrapper">
-                  <a href="https://demos.creative-tim.com/argon-design-system-angular/documentation/alerts?ref=adsa-landing-page"
-                    class="btn btn-info btn-icon mb-3 mb-sm-0">
+                  <a [routerLink]="['/about']"
+                    class="btn btn-info btn-icon mb-3 mb-sm-0 text-white">
                     <span class="btn-inner--icon"><i class="fa fa-code"></i></span>
-                    <span class="btn-inner--text">Visit posts</span>
+                    <span class="btn-inner--text">More about me</span>
                   </a>
                   <!-- <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-landing-page" class="btn btn-white btn-icon mb-3 mb-sm-0">
                     <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
@@ -37,16 +37,17 @@
               </div>
   
               <div class="col-lg-6">
-                <div class="card bg-default shadow border-0">
+                <div class="card bg-black-blue shadow border-0">
                   <img src="./assets/img/theme/coding.jpg" class="card-img-top">
                   <blockquote class="card-blockquote">
                     <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95"
                       class="svg-bg">
-                      <polygon points="0,60 583,95 0,95" class="fill-default" />
+                      <!-- <polygon points="0,52 583,95 0,95" class="fill-default" /> -->
                       <!-- <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" /> -->
                     </svg>
-                    <h4 class="display-3 font-weight-bold text-white">Coding</h4>
-                    <p class="lead text-italic text-white">Coding is the process of writing instructions for computers. It’s sort of like writing a to-do list in another language. In fact, there are dozens of different programming languages out there.</p>
+                    <h4 class="display-3 font-weight-bold text-white">Coding wisdom</h4>
+                    <p class="lead text-italic text-white">Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+                    </p>
                   </blockquote>
                 </div>
               </div>
@@ -55,137 +56,107 @@
           </div>
         </div>
         <!-- SVG separator -->
-        <div class="separator separator-bottom separator-skew">
+        <!-- <div class="separator separator-bottom separator-skew">
           <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
             xmlns="http://www.w3.org/2000/svg">
             <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
           </svg>
-        </div>
+        </div> -->
       </section>
       <!-- 1st Hero Variation -->
     </div>
-    <section class="section section-lg pt-lg-0 mt--200">
+  
+    <section class="section section-lg pt-lg-5">
       <div class="container">
         <div class="row justify-content-center">
+            <h1 class="display-3 text-center pt-4">Tools</h1>
           <div class="col-lg-12">
             <div class="row row-grid">
               <div class="col-lg-4">
-                <div class="card card-lift--hover shadow border-0">
+                <div class="card card-lift--hover shadow border-0 text-center match-height">
                   <div class="card-body py-5">
-                    <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                      <i class="ni ni-check-bold"></i>
+                      <img src="./assets/img/brand/angular.png" class="fit-image img-center">
+                    <h6 class="text-danger text-uppercase">Angular</h6>
+                    <p class="description mt-3">Angular is a platform for building mobile and desktop web applications.</p>
+                    <div class="text-center">
+                      <span class="badge badge-pill badge-danger">cross-platform</span>
+                      <span class="badge badge-pill badge-danger">speed & performance</span>
+                      <span class="badge badge-pill badge-danger">productivity</span>
                     </div>
-                    <h6 class="text-primary text-uppercase">Download Argon</h6>
-                    <p class="description mt-3">Argon is a great free UI package based on Angular that includes the most
-                      important components and features.</p>
-                    <div>
-                      <span class="badge badge-pill badge-primary">angular</span>
-                      <span class="badge badge-pill badge-primary">ng-bootstrap</span>
-                      <span class="badge badge-pill badge-primary">creative</span>
-                    </div>
-                    <a href="javascript:void(0)" class="btn btn-primary mt-4">Learn more</a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="card card-lift--hover shadow border-0">
+                <div class="card card-lift--hover shadow border-0 text-center match-height">
                   <div class="card-body py-5">
-                    <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
-                      <i class="ni ni-istanbul"></i>
-                    </div>
-                    <h6 class="text-success text-uppercase">Build Something</h6>
-                    <p class="description mt-3">Argon is a great free UI package based on Angular that includes the most
-                      important components and features.</p>
+                    <img src="./assets/img/brand/laravel.png" class="fit-image border-bottom img-center">
+                    <h6 class="text-warning text-uppercase">Laravel</h6>
+                    <p class="description mt-3">Laravel is a web application framework. Freeing you to create without sweating the small things.</p>
                     <div>
-                      <span class="badge badge-pill badge-success">business</span>
-                      <span class="badge badge-pill badge-success">vision</span>
-                      <span class="badge badge-pill badge-success">success</span>
+                      <span class="badge badge-pill badge-warning">expressive</span>
+                      <span class="badge badge-pill badge-warning">elegant syntax</span>
+                      <span class="badge badge-pill badge-warning">well-architect</span>
+
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-success mt-4">Learn more</a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="card card-lift--hover shadow border-0">
+                <div class="card card-lift--hover shadow border-0 text-center match-height">
                   <div class="card-body py-5">
-                    <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
-                      <i class="ni ni-planet"></i>
-                    </div>
-                    <h6 class="text-warning text-uppercase">Prepare Launch</h6>
-                    <p class="description mt-3">Argon is a great free UI package based on Angular that includes the most
-                      important components and features.</p>
+                    <img src="./assets/img/brand/mysql.png" class="img-center">
+                    <h6 class="text-primary text-uppercase">MYSQL</h6>
+                    <p class="description mt-3">MySQL is the world's most popular open source database.</p>
                     <div>
-                      <span class="badge badge-pill badge-warning">marketing</span>
-                      <span class="badge badge-pill badge-warning">product</span>
-                      <span class="badge badge-pill badge-warning">launch</span>
+                      <span class="badge badge-pill badge-primary">cost effective</span>
+                      <span class="badge badge-pill badge-primary">scalable database</span>
+                      <span class="badge badge-pill badge-primary">high performance</span>
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-warning mt-4">Learn more</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section section-lg">
-      <div class="container">
-        <div class="row row-grid align-items-center">
-          <div class="col-md-6 order-md-2">
-            <img src="./assets/img/theme/promo-1.png" class="img-fluid floating">
-          </div>
-          <div class="col-md-6 order-md-1">
-            <div class="pr-md-5">
-              <div class="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
-                <i class="ni ni-settings-gear-65"></i>
+        <div class="row justify-content-center pt-lg-4">
+          <div class="col-lg-12">
+            <div class="row row-grid justify-content-center">
+              <div class="col-lg-4">
+                <div class="card card-lift--hover shadow border-0 text-center match-height">
+                  <div class="card-body py-5">
+                      <img src="./assets/img/brand/nodejs.png" class="fit-image img-center">
+                    <h6 class="text-success text-uppercase">NodeJs</h6>
+                    <p class="description mt-3">Node.js is designed to build scalable network applications.</p>
+                    <div class="text-center">
+                      <span class="badge badge-pill badge-success">cross-platform</span>
+                      <span class="badge badge-pill badge-success">speed & performance</span>
+                      <span class="badge badge-pill badge-success">productivity</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3>Awesome features</h3>
-              <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and
-                images and you're good to go.</p>
-              <ul class="list-unstyled mt-5">
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
+              <div class="col-lg-4">
+                <div class="card card-lift--hover shadow border-0 text-center match-height">
+                  <div class="card-body py-5">
+                    <img src="./assets/img/brand/reactjs.png" class="fit-image img-center">
+                    <h6 class="text-cyon text-uppercase">React native</h6>
+                    <p class="description mt-3">React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces.
+                    </p>
                     <div>
-                      <div class="badge badge-circle badge-success mr-3">
-                        <i class="ni ni-settings-gear-65"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <h6 class="mb-0">Carefully crafted components</h6>
+                      <span class="badge badge-pill badge-cyon">Seamless Cross-Platform</span>
+                      <span class="badge badge-pill badge-cyon">Fast Refresh</span>
+
                     </div>
                   </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <div>
-                      <div class="badge badge-circle badge-success mr-3">
-                        <i class="ni ni-html5"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <h6 class="mb-0">Amazing page examples</h6>
-                    </div>
-                  </div>
-                </li>
-                <li class="py-2">
-                  <div class="d-flex align-items-center">
-                    <div>
-                      <div class="badge badge-circle badge-success mr-3">
-                        <i class="ni ni-satisfied"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <h6 class="mb-0">Super friendly support team</h6>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section bg-secondary">
+    <!-- <section class="section bg-secondary">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6">
@@ -220,8 +191,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <section class="section pb-0 bg-gradient-warning">
+    </section> -->
+    <section class="section pb-0 bg-gradient-black-blue">
       <div class="container">
         <div class="row row-grid align-items-center">
           <div class="col-md-6 order-lg-2 ml-lg-auto">
@@ -403,15 +374,15 @@
                   dollars, because I got the answers. I understand culture.</p>
               </div>
               <div class="col-lg-3 ml-lg-auto">
-                <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-landing-page"
-                  class="btn btn-lg btn-block btn-white">Download Angular</a>
+                <a href="javascript:void(0)"
+                  class="btn btn-lg btn-block btn-white">Contact me</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section section-lg bg-gradient-default">
+    <section class="section section-lg bg-gradient-black-blue">
       <div class="container pt-lg pb-300">
         <div class="row text-center justify-content-center">
           <div class="col-lg-10">
