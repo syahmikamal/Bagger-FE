@@ -40,3 +40,8 @@ section {
 .fill-opacity-8 {
 	fill-opacity: .8;
 }
+
+::selection {
+    background-color: rgb(238, 99, 82, 1);
+    color: white
+}
