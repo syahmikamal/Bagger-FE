@@ -59,6 +59,18 @@ img {
     gap: 50px;
 }
 
+.underline {
+  background: linear-gradient(90deg, #005fff 0%, #07effd 100%);
+  background-repeat: no-repeat;
+  background-size: 95% 0.2rem;
+  background-position: 0 90%;
+  transition: all 0.3s ease-in-out;
+}
+
+.underline:hover {
+  background-size: 95% 90%;
+}
+
 /* hover icon effect */
 ul {
     margin: 0;
