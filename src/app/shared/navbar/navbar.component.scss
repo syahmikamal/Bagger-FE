@@ -22,3 +22,14 @@
 .github-color:hover {
     color: gray
 }
+
+
+.underline {
+    background: linear-gradient(90deg, #005fff 0%, #07effd 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2rem;
+    background-position: 0 100%;
+    background-color: #1a1c23;
+    // transition: all 0.3s ease-in-out;
+}
+    
