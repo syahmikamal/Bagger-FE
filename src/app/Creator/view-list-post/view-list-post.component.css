@@ -1,0 +1,48 @@
+.topic {
+    font-family: monospace;
+    font-size: 2em;
+}
+
+.card-text{
+    font-size:19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+img {
+    border-radius: 12px;
+    display: block;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    object-fit: cover;
+}
+
+.card-padding {
+    padding: 0.5rem;
+    padding-top: 1.5rem;
+    
+}
+
+.card {
+    cursor: pointer;
+    
+}
+
+
+h5:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.truncate-content {
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    height: 20%;
+}
