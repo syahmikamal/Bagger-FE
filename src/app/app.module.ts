@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { AuthRoutingModule } from './Auth/auth-routing.module';
+import { CreatorRoutingModule } from './Creator/creator-routing.module';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './Auth/signup/signup.component';
@@ -19,6 +20,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
 import { AuthService } from './service/auth.service';
+import { ServiceApiService } from './service/service-api.service';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './Auth/login/login.component';
@@ -26,6 +28,7 @@ import { VerifyComponent } from './Auth/verify/verify.component';
 import { ResetPasswordComponent } from './Auth/reset-password/reset-password.component';
 import { CoverComponent } from './cover/cover.component';
 import { AboutComponent } from './about/about.component';
+import { ViewListPostComponent } from './Creator/view-list-post/view-list-post.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { AboutComponent } from './about/about.component';
     VerifyComponent,
     ResetPasswordComponent,
     CoverComponent,
-    AboutComponent
+    AboutComponent,
+    ViewListPostComponent
   ],
   imports: [
     BrowserModule,
@@ -52,11 +56,14 @@ import { AboutComponent } from './about/about.component';
     HomeModule,
     HttpClientModule,
     AuthRoutingModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CreatorRoutingModule
   ],
   providers: [
     AuthService,
-    CookieService
+    CookieService,
+    ServiceApiService
+    
   ],
   bootstrap: [AppComponent]
 })
