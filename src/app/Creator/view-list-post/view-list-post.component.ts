@@ -30,7 +30,8 @@ export class ViewListPostComponent implements OnInit {
               'post_content': this.postData.data.listPost[i].post_content,
               'post_title': this.postData.data.listPost[i].post_title,
               'name': this.postData.data.listPost[i].name,
-              'time_posted': this.postData.data.listPost[i].created_at
+              'time_posted': this.postData.data.listPost[i].created_at,
+              'header_image': this.postData.data.listPost[i].header_image
             })
           }
 
