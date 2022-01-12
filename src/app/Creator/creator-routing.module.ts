@@ -9,7 +9,7 @@ const routes: Routes = [
 
     children: [
       {
-        path: 'view-list-post',
+        path: 'blog',
         component: ViewListPostComponent
       }
     ]
