@@ -89,7 +89,8 @@
 
 .card-lift--hover {
     &:hover {
-        transform: translateY(-20px);
+        transform: translateY(-8px);
         @include transition($transition-base);
     }
+
 }
