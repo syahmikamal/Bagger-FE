@@ -49,16 +49,16 @@
                     </div>
                    
                     <div class="row row-grid" style="display: flex" >
-                        <div class="col-md-4" *ngFor='let postData of allPost'>
+                        <div class="col-md-4" *ngFor='let allPost of allPost'>
                             <div class="card bg-gradient-black-blue border-0 card-lift--hover">
-                              <img [src]="postData.header_image" class="card-img-top" width="300" height="250">
+                              <img [src]="allPost.header_image" class="card-img-top" width="300" height="250">
                               <blockquote class="card-padding card-blockquote">
                                   <p class="text-light small">
-                                      Posted {{postData.time_posted}}
+                                      Posted {{allPost.time_posted}}
                                   </p>
-                                <h5 class="font-weight-bold text-white">{{postData.post_title}}</h5>
+                                <h5 class="font-weight-bold text-white">{{allPost.post_title}}</h5>
                                 <div>
-                                    <p class="text-italic text-white truncate-content">{{postData.post_content}}</p>
+                                    <p class="text-italic text-white truncate-content">{{allPost.post_content}}</p>
               
                                 </div>
               
