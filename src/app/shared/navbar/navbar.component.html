@@ -9,12 +9,14 @@
           [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
+    <div class="navbar-collapse collapse bg-gradient-black-blue" id="navbar_global" [ngbCollapse]="isCollapsed">
       <div class="navbar-collapse-header">
         <div class="row">
-          <div class="col-6 collapse-brand">
+          <div class="col-6 collapse-brand ">
             <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png">
+              <!-- <img src="./assets/img/brand/blue.png"> -->
+              <h3 class="heading-title text-white mb-0 small font-nav">KIDMANIAC<i class="lightning-color bi bi-lightning"></i>
+              </h3>
             </a>
           </div>
           <div class="col-6 collapse-close">
@@ -80,14 +82,14 @@
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
         <li class="nav-item">
           <a class="nav-link no-caret" role="button" [routerLink]="['/about']">
-            <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">About</span>
+            <i class="ni ni-ui-04 d-lg-none text-light"></i>
+            <span class="nav-link-inner--text text-white">About</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link no-caret" role="button" [routerLink]="['/blog']">
-            <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">Blog</span>
+          <a class="nav-link no-caret text-white" role="button" [routerLink]="['/blog']">
+            <i class="ni ni-ui-04 d-lg-none text-light"></i>
+            <span class="nav-link-inner--text text-white">Blog</span>
           </a>
         </li>
         <!-- <li class="nav-item">
