@@ -15,6 +15,8 @@ export class AuthGuard implements CanActivate {
   jwt: any;
   token: any;
   userId: any;
+  TokenPayload:any;
+
 
   constructor(
     private router: Router,
@@ -45,18 +47,22 @@ export class AuthGuard implements CanActivate {
 
           Swal.fire({
             position: 'center',
+            icon: 'warning',
             title: 'Sorry',
-            text: 'This token is expired',
-            timer: 2000,
+            text: 'This token is expired.',
+            timer: 3000,
+            showConfirmButton: false
 
           });
 
           window.location.replace('/login')
         } else if (isExpired === false) {
 
-          const TokenPayload = decode(this.token);
+          this.TokenPayload = decode(this.token);
 
-          if (TokenPayload['data']['email'] === this.userId) {
+          const token:any = decode(this.token);
+
+          if (this.TokenPayload.data.email === this.userId) {
             console.info('this is true')
             return true;
           } else {
@@ -71,15 +77,31 @@ export class AuthGuard implements CanActivate {
               allowOutsideClick: false
             });
 
-            //auto logged out, clear cookies and redirect to login page
-            // this.cookieService.delete('user_id', '/');
-            // this.cookieService.delete('token', '/');
+            // auto logged out, clear cookies and redirect to login page
+            this.cookieService.delete('user_id', '/');
+            this.cookieService.delete('token', '/');
 
-            // window.location.replace('/login');
+            window.location.replace('/login');
 
           }
 
         }
+      } else {
+
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Attention',
+          text: 'Please login first',
+          showConfirmButton: false,
+          timer: 3000,
+          allowOutsideClick: false
+        });
+
+        this.cookieService.delete('user_id', '/');
+        this.cookieService.delete('token', '/');
+
+        window.location.replace('/login')
       }
 
     return true;
