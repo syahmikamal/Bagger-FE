@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ViewListPostComponent } from './view-list-post/view-list-post.component';
 
 import { CreatorRoutingModule } from './creator-routing.module';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CreatorRoutingModule } from './creator-routing.module';
   imports: [
     CommonModule,
     CreatorRoutingModule,
-    ViewListPostComponent
+    ViewListPostComponent,
+    ViewPostComponent
   ]
 })
 export class CreatorModule { }
