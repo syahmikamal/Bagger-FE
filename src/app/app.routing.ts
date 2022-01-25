@@ -12,7 +12,7 @@ import { AboutComponent } from './about/about.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
-    { path: 'user-profile',     component: ProfileComponent },
+    { path: 'profile',     component: ProfileComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'about',            component: AboutComponent, canActivate: [AuthGuard] },
     { path: '',             component: CoverComponent },

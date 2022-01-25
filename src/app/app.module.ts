@@ -29,6 +29,7 @@ import { ResetPasswordComponent } from './Auth/reset-password/reset-password.com
 import { CoverComponent } from './cover/cover.component';
 import { AboutComponent } from './about/about.component';
 import { ViewListPostComponent } from './Creator/view-list-post/view-list-post.component';
+import { ViewPostComponent } from './Creator/view-post/view-post.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ViewListPostComponent } from './Creator/view-list-post/view-list-post.c
     ResetPasswordComponent,
     CoverComponent,
     AboutComponent,
-    ViewListPostComponent
+    ViewListPostComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
